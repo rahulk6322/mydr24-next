@@ -1,0 +1,328 @@
+import type { Locale } from "./config";
+
+// UI copy. `hi` is typed against `en`, so a missing key is a compile error.
+// Placeholders like {112}, {strong}, {link} are rendered with fmt()/rich().
+
+const en = {
+  locale: { switchLabel: "हिन्दी में देखें (Switch to Hindi)", short: "हिं", long: "हिन्दी में देखें" },
+  nav: { home: "Home", services: "Services", doctors: "Doctors", how: "How it works", app: "App", about: "About", contact: "Contact", primary: "Primary" },
+  header: {
+    talk: "Talk to a Doctor", openMenu: "Open menu", closeMenu: "Close menu", menu: "Menu",
+    themeToLight: "Switch to light theme", themeToDark: "Switch to dark theme", theme: "Theme",
+    skip: "Skip to content", sosLabel: "SOS emergency options",
+  },
+  mega: { goldenBadge: "Golden hour", goldenTitle: "Quick Medical Service", goldenText: "Call, dispatch, stabilise, hospital — coordinated in one flow.", goldenLink: "See how it works", allServices: "All services" },
+  common: {
+    comingSoon: "Coming soon", soon: "Soon", illustrative: "Illustrative", learnMore: "Learn more",
+    consultNow: "Consult now", book: "Book appointment", joinWaitlist: "Join the waitlist", unavailable: "Unavailable now",
+    online: "Online", busy: "In a consult", offline: "Offline", nextToday: "Next: Today {time}", nextTomorrow: "Next: Tomorrow {time}",
+    years: "{n} yrs", verified: "NMC Reg. verified", close: "Close", backHome: "Back to home",
+    requestCallback: "Request a callback", emergency: "Emergency", breadcrumb: "Breadcrumb", prev: "Previous", next: "Next", slideOf: "{label} {n} of {total}",
+  },
+  hero: {
+    eyebrow: "AI-powered hybrid healthcare",
+    title: "Real doctors. In minutes. Wherever you are in India.",
+    lead: "Talk to NMC-verified doctors by video or voice call. MyDR24 works on low-bandwidth networks, speaks your language and helps families care for their elders across rural and semi-urban India.",
+    ctaPrimary: "Talk to a Doctor Now", ctaSecondary: "Get the app",
+    chips: ["NMC-verified doctors", "12+ Indian languages", "Works on 2G/3G"],
+    onlineNow: "Online now", connectedIn: "Connected in {time}",
+  },
+  trust: {
+    doctorsOnline: "Doctors online now*", avgConnect: "Average connect time*", cities: "Cities & towns served*", live: "Live",
+    note: "*Illustrative, simulated live figures for design purposes. Replace with verified data before launch.",
+  },
+  golden: {
+    eyebrow: "Quick Medical Service", title: "Built around the golden hour",
+    lead: "In an emergency, the first hour matters most. One call to MyDR24 starts a coordinated response: a doctor on the line, help dispatched and the nearest suitable hospital alerted.",
+    steps: [
+      { time: "Minute 0", title: "Call", text: "Tap SOS or call. A doctor triages over voice or video while your location is shared." },
+      { time: "Dispatch", title: "Dispatch", text: "The nearest available ambulance or local responder is coordinated to you." },
+      { time: "En route", title: "Stabilise", text: "The doctor guides first aid step by step until help arrives." },
+      { time: "Handover", title: "Hospital", text: "The receiving hospital gets your case notes before you arrive, for a faster handover." },
+    ],
+    footStrong: "Life-threatening emergency?",
+    foot: "{strong} Always call {112} or {108} first. MyDR24 response times depend on location and availability.",
+    cta: "Emergency options",
+  },
+  app: {
+    eyebrow: "MyDR24 App", title: "Care in your pocket",
+    lead: "Consult a doctor, raise an SOS or manage appointments for the whole family. Lightweight enough for entry-level phones and patchy networks.",
+    features: ["Quick Consult with audio fallback", "One-tap SOS with live location", "Family profiles & reminders", "Digital prescriptions & records"],
+    scanTitle: "Scan to download", scanText: "Point your phone camera here",
+    screens: { consult: "Quick Consult", sos: "SOS", appointments: "Appointments" }, carousel: "App screen",
+  },
+  servicesSection: {
+    eyebrow: "Services", title: "One platform for everyday and urgent care",
+    lead: "Online consultations work alongside in-person and at-home care, so you get the right help without travelling far.",
+    note: "*Typical connect time, subject to doctor availability. Illustrative.", viewAll: "View all services",
+  },
+  how: {
+    eyebrow: "How it works", title: "From “I feel unwell” to a doctor in 3 steps",
+    steps: [
+      { title: "Tell us what's wrong", text: "Open the app, call us or fill in a short form. Our AI assistant asks a few questions to route you to the right doctor." },
+      { title: "Talk to a doctor", text: "An NMC-registered doctor joins by video or voice, in your preferred language." },
+      { title: "Get care & follow-up", text: "Receive an e-prescription, lab or home-visit booking and follow-up reminders, all saved to your health record." },
+    ],
+  },
+  elderly: {
+    eyebrow: "Elderly Care", title: "Care for the people who cared for you",
+    lead: "Whether you live next door or overseas, MyDR24 helps your parents get regular, respectful care at home, and keeps you updated.",
+    points: [
+      { strong: "Scheduled home visits:", text: "nurses, physiotherapists and sample collection." },
+      { strong: "Medicine reminders", text: "by voice call for people who don't use smartphones." },
+      { strong: "Family dashboard", text: "with visit notes and vitals, shared only with consent." },
+    ],
+    cta: "Plan care for a parent",
+    artLabel: "Illustration: a caregiver checking an elderly woman's blood pressure at home in warm evening light",
+    artNote: "Illustration placeholder. Replace with licensed, consented photography.",
+    bpCard: "BP 128/82 · Normal range", bpSub: "Shared with family · Illustrative", nurseCard: "Nurse Rekha arrived", nurseSub: "4:02 PM visit",
+    testimonials: "What families say", carousel: "Testimonial",
+  },
+  trustSection: {
+    eyebrow: "Trust & compliance", title: "Built on clinical and data-privacy standards", lead: "Your health data is private, and every doctor is verified.",
+    badges: [
+      { title: "NMC-verified doctors", text: "Every doctor's registration is checked against the National Medical Commission / State Medical Council registers before onboarding." },
+      { title: "ABDM-aligned", text: "Designed to work with the Ayushman Bharat Digital Mission, including ABHA health IDs and consent-based record sharing." },
+      { title: "DPDP Act, 2023", text: "Privacy practices built on India's Digital Personal Data Protection Act: clear consent, purpose limits and your right to erasure." },
+    ],
+    chips: ["Telemedicine Practice Guidelines, 2020", "Encrypted calls & records", "Consent-first data sharing", "Grievance officer on record"],
+  },
+  faq: { eyebrow: "FAQ", title: "Questions, answered", more: "Can't find what you need? {link}", moreLink: "Contact our care team" },
+  leadSection: {
+    eyebrow: "Get started", title: "Request a callback from our care team",
+    lead: "Tell us what you need. A care coordinator will call you back, usually within 15 minutes during service hours.",
+    helpline: "24×7 helpline", languages: "Support in 12+ Indian languages",
+  },
+  form: {
+    name: "Full name", namePh: "e.g. Sunita Devi",
+    mobile: "Mobile number", mobilePh: "98765 43210", mobileHint: "10-digit Indian mobile. We'll call or WhatsApp you.",
+    city: "City or PIN code", cityPh: "e.g. Sitapur or 261001",
+    language: "Preferred language", languagePh: "Select language",
+    service: "Service needed", servicePh: "Select a service", waitlist: "(join waitlist)",
+    consent: "I consent to Accufly Healthcare contacting me about my request and processing my data as described in the {privacy}, in line with the DPDP Act, 2023. I can withdraw consent anytime.",
+    privacy: "Privacy Policy", submit: "Request a callback", secure: "Encrypted in transit. We never sell your data.",
+    errors: {
+      name: "Please enter your name.", mobile: "Enter a valid 10-digit mobile number starting with 6–9.", city: "Enter your city or a 6-digit PIN.",
+      language: "Please choose a language.", service: "Please choose a service.", consent: "Consent is required so we can contact you.",
+    },
+    rate: "Too many requests from this network. Please try again in a few minutes or call our helpline.",
+    server: "Something went wrong on our side. Please try again or call our helpline.",
+    successTitle: "Request received", successText: "A MyDR24 care coordinator will call you shortly on {mobile}.", ref: "Ref",
+    worse: "Feeling worse while you wait? Call {112} immediately.", again: "Submit another request", honeypot: "Leave this field empty",
+  },
+  notice: { strong: "Medical emergency?", text: "{strong} Don't fill out a form. Call {112} or {108} (ambulance) now, or tap {sos}." },
+  sos: {
+    title: "Is this a medical emergency?",
+    text: "If someone is unconscious, not breathing, bleeding heavily or has chest pain, call national emergency services first.",
+    national: "National Emergency", nationalSub: "Police · Fire · Medical", ambulance: "Ambulance", ambulanceSub: "Government ambulance service",
+    callUs: "Call MyDR24 Quick Medical Service", note: "MyDR24 coordinates care and is not a replacement for 112/108. Availability varies by location.",
+  },
+  bar: { label: "Quick actions", call: "Call Doctor", book: "Book" },
+  sheet: { title: "Book a doctor" },
+  footer: {
+    blurb: "AI-powered hybrid healthcare for rural, semi-urban and underserved India: teleconsultation, appointments and care at home.",
+    services: "Services", company: "Company", legal: "Legal", reach: "Reach us",
+    about: "About us", how: "How it works", doctors: "Doctors", faq: "FAQ", contact: "Contact", designSystem: "Design system",
+    privacy: "Privacy policy", terms: "Terms of use", disclaimer: "Medical disclaimer", grievance: "Grievance officer", emergency: "Emergency: 112",
+    disclaimerTitle: "Medical disclaimer.",
+    disclaimerText: "MyDR24 provides teleconsultation and care-coordination services through registered medical practitioners and does not replace emergency services. In an emergency, call 112 or 108 immediately. Website content is for general information and is not medical advice. Clinical outcomes vary between individuals and no specific result is guaranteed. Figures, doctor profiles and testimonials marked “illustrative” are sample data for design purposes.",
+    rights: "All rights reserved.", madeFor: "Made for Bharat",
+  },
+  doctorsPage: {
+    eyebrow: "Our doctors", title: "Verified. Experienced. Local.",
+    lead: "Live availability across our network. Filter by speciality or language and consult whoever is online.",
+    speciality: "Speciality", language: "Language", all: "All", onlineOnly: "Online now only", apply: "Apply filters",
+    results: "{n} doctors", none: "No doctors match these filters right now. Try another speciality or language.", reset: "Clear filters",
+    sample: "Doctor profiles are illustrative sample data; availability is simulated.", updated: "Availability updates automatically.",
+    seeAll: "See all doctors", carousel: "Doctor",
+  },
+  servicesPage: {
+    title: "Care that fits how India lives",
+    lead: "From a 2-minute consult at midnight to weekly nurse visits for your parents, MyDR24 combines online and in-person care in one place.",
+    compareEyebrow: "Compare", compareTitle: "Which service is right for me?", feature: "Feature",
+    headers: ["Quick Consult", "Appointment", "Home Care"],
+    rows: [
+      ["Best for", "Sudden, non-emergency symptoms", "Specialist opinion, follow-ups", "Elders, recovery, chronic care"],
+      ["How", "Video / voice", "Online or partner clinic", "At your home"],
+      ["Wait", "~2 min*", "Choose your slot", "Same / next day*"],
+      ["Prescription", "e-Prescription", "e-Prescription", "Via linked doctor"],
+    ],
+    compareNote: "*Illustrative; depends on location and availability.",
+    ctaTitle: "Not sure where to start?", ctaText: "Tell us what's happening, and our care team will point you to the right service.",
+    features: "What's included", related: "Doctors for this service", other: "Other services",
+  },
+  contactPage: {
+    title: "We're here, 24×7", lead: "Call, message or request a callback. Our care coordinators speak your language.",
+    ways: "Ways to reach us", helplineSub: "24×7 helpline", whatsapp: "WhatsApp us", whatsappSub: "Replies in a few minutes",
+    emailSub: "Non-urgent queries · 1 business day", office: "Registered office address (placeholder)",
+    grievanceTitle: "Grievance Officer", grievanceText: "Name (placeholder) · {email} · Response within the time required by applicable law.",
+    formTitle: "Request a callback",
+  },
+  notFound: { title: "Page not found", text: "The page you're looking for doesn't exist or has moved." },
+};
+
+export type Dictionary = typeof en;
+
+const hi: Dictionary = {
+  locale: { switchLabel: "View in English", short: "EN", long: "View in English" },
+  nav: { home: "होम", services: "सेवाएँ", doctors: "डॉक्टर", how: "कैसे काम करता है", app: "ऐप", about: "हमारे बारे में", contact: "संपर्क", primary: "मुख्य" },
+  header: {
+    talk: "डॉक्टर से बात करें", openMenu: "मेनू खोलें", closeMenu: "मेनू बंद करें", menu: "मेनू",
+    themeToLight: "लाइट थीम पर जाएँ", themeToDark: "डार्क थीम पर जाएँ", theme: "थीम",
+    skip: "मुख्य सामग्री पर जाएँ", sosLabel: "SOS आपातकालीन विकल्प",
+  },
+  mega: { goldenBadge: "गोल्डन आवर", goldenTitle: "त्वरित चिकित्सा सेवा", goldenText: "कॉल, डिस्पैच, स्थिरीकरण, अस्पताल — सब एक ही प्रक्रिया में।", goldenLink: "देखें यह कैसे काम करता है", allServices: "सभी सेवाएँ" },
+  common: {
+    comingSoon: "जल्द आ रहा है", soon: "जल्द", illustrative: "उदाहरण", learnMore: "और जानें",
+    consultNow: "अभी परामर्श लें", book: "अपॉइंटमेंट बुक करें", joinWaitlist: "प्रतीक्षा सूची में जुड़ें", unavailable: "अभी उपलब्ध नहीं",
+    online: "ऑनलाइन", busy: "परामर्श में", offline: "ऑफ़लाइन", nextToday: "अगला: आज {time}", nextTomorrow: "अगला: कल {time}",
+    years: "{n} वर्ष", verified: "NMC पंजीकरण सत्यापित", close: "बंद करें", backHome: "होम पर वापस जाएँ",
+    requestCallback: "कॉलबैक का अनुरोध करें", emergency: "आपातकाल", breadcrumb: "ब्रेडक्रम्ब", prev: "पिछला", next: "अगला", slideOf: "{label} {n} / {total}",
+  },
+  hero: {
+    eyebrow: "AI-संचालित हाइब्रिड हेल्थकेयर",
+    title: "असली डॉक्टर। मिनटों में। आप भारत में जहाँ भी हों।",
+    lead: "NMC-सत्यापित डॉक्टरों से वीडियो या वॉइस कॉल पर बात करें। MyDR24 कमज़ोर नेटवर्क पर भी चलता है, आपकी भाषा बोलता है और ग्रामीण व अर्ध-शहरी भारत में परिवारों को अपने बुज़ुर्गों की देखभाल में मदद करता है।",
+    ctaPrimary: "अभी डॉक्टर से बात करें", ctaSecondary: "ऐप डाउनलोड करें",
+    chips: ["NMC-सत्यापित डॉक्टर", "12+ भारतीय भाषाएँ", "2G/3G पर भी चलता है"],
+    onlineNow: "अभी ऑनलाइन", connectedIn: "{time} में जुड़े",
+  },
+  trust: {
+    doctorsOnline: "अभी ऑनलाइन डॉक्टर*", avgConnect: "औसत जुड़ने का समय*", cities: "शहर और कस्बे*", live: "लाइव",
+    note: "*डिज़ाइन के लिए सिम्युलेटेड उदाहरण आँकड़े। लॉन्च से पहले सत्यापित डेटा से बदलें।",
+  },
+  golden: {
+    eyebrow: "त्वरित चिकित्सा सेवा", title: "गोल्डन आवर को ध्यान में रखकर बनाया गया",
+    lead: "आपातकाल में पहला घंटा सबसे अहम होता है। MyDR24 पर एक कॉल से तालमेल वाली मदद शुरू होती है: लाइन पर डॉक्टर, मदद रवाना और सबसे नज़दीकी उपयुक्त अस्पताल को सूचना।",
+    steps: [
+      { time: "मिनट 0", title: "कॉल", text: "SOS दबाएँ या कॉल करें। आपकी लोकेशन साझा होते ही डॉक्टर वॉइस या वीडियो पर स्थिति समझते हैं।" },
+      { time: "रवाना", title: "डिस्पैच", text: "सबसे नज़दीकी उपलब्ध एम्बुलेंस या स्थानीय सहायक को आप तक भेजा जाता है।" },
+      { time: "रास्ते में", title: "स्थिरीकरण", text: "मदद पहुँचने तक डॉक्टर कदम-दर-कदम प्राथमिक उपचार में मार्गदर्शन करते हैं।" },
+      { time: "हैंडओवर", title: "अस्पताल", text: "आपके पहुँचने से पहले अस्पताल को आपके केस नोट्स मिल जाते हैं, ताकि इलाज जल्दी शुरू हो।" },
+    ],
+    footStrong: "जान का खतरा है?",
+    foot: "{strong} हमेशा पहले {112} या {108} पर कॉल करें। MyDR24 का रिस्पॉन्स समय स्थान और उपलब्धता पर निर्भर करता है।",
+    cta: "आपातकालीन विकल्प",
+  },
+  app: {
+    eyebrow: "MyDR24 ऐप", title: "देखभाल, आपकी जेब में",
+    lead: "डॉक्टर से परामर्श लें, SOS भेजें या पूरे परिवार के अपॉइंटमेंट संभालें। सस्ते फ़ोन और कमज़ोर नेटवर्क पर भी हल्का और तेज़।",
+    features: ["ऑडियो विकल्प के साथ क्विक कंसल्ट", "लाइव लोकेशन के साथ एक-टैप SOS", "परिवार की प्रोफ़ाइल और रिमाइंडर", "डिजिटल पर्चे और रिकॉर्ड"],
+    scanTitle: "डाउनलोड के लिए स्कैन करें", scanText: "अपने फ़ोन का कैमरा यहाँ रखें",
+    screens: { consult: "क्विक कंसल्ट", sos: "SOS", appointments: "अपॉइंटमेंट" }, carousel: "ऐप स्क्रीन",
+  },
+  servicesSection: {
+    eyebrow: "सेवाएँ", title: "रोज़मर्रा और आपात देखभाल, एक ही प्लेटफ़ॉर्म पर",
+    lead: "ऑनलाइन परामर्श के साथ क्लिनिक और घर पर देखभाल भी, ताकि आपको दूर जाए बिना सही मदद मिले।",
+    note: "*सामान्य जुड़ने का समय, डॉक्टर की उपलब्धता पर निर्भर। उदाहरण।", viewAll: "सभी सेवाएँ देखें",
+  },
+  how: {
+    eyebrow: "कैसे काम करता है", title: "“तबीयत ठीक नहीं” से डॉक्टर तक, सिर्फ़ 3 कदम",
+    steps: [
+      { title: "अपनी परेशानी बताएँ", text: "ऐप खोलें, कॉल करें या छोटा फ़ॉर्म भरें। हमारा AI सहायक कुछ सवाल पूछकर आपको सही डॉक्टर तक पहुँचाता है।" },
+      { title: "डॉक्टर से बात करें", text: "NMC-पंजीकृत डॉक्टर आपकी पसंद की भाषा में वीडियो या वॉइस पर जुड़ते हैं।" },
+      { title: "इलाज और फ़ॉलो-अप", text: "ई-प्रिस्क्रिप्शन, लैब या होम-विज़िट बुकिंग और फ़ॉलो-अप रिमाइंडर पाएँ — सब आपके हेल्थ रिकॉर्ड में सुरक्षित।" },
+    ],
+  },
+  elderly: {
+    eyebrow: "बुज़ुर्गों की देखभाल", title: "उनकी देखभाल, जिन्होंने आपकी देखभाल की",
+    lead: "आप पास रहें या विदेश में, MyDR24 आपके माता-पिता को घर पर नियमित और सम्मानजनक देखभाल दिलाता है, और आपको हर अपडेट देता है।",
+    points: [
+      { strong: "तय समय पर होम विज़िट:", text: "नर्स, फ़िज़ियोथेरेपिस्ट और सैंपल कलेक्शन।" },
+      { strong: "दवा के रिमाइंडर", text: "वॉइस कॉल से, उनके लिए भी जो स्मार्टफ़ोन नहीं चलाते।" },
+      { strong: "फ़ैमिली डैशबोर्ड", text: "विज़िट नोट्स और वाइटल्स के साथ, केवल सहमति से साझा।" },
+    ],
+    cta: "माता-पिता की देखभाल प्लान करें",
+    artLabel: "चित्र: शाम की गर्म रोशनी में घर पर एक देखभालकर्ता बुज़ुर्ग महिला का ब्लड प्रेशर जाँच रही है",
+    artNote: "प्लेसहोल्डर चित्र। लाइसेंस प्राप्त, सहमति वाली फ़ोटो से बदलें।",
+    bpCard: "BP 128/82 · सामान्य", bpSub: "परिवार के साथ साझा · उदाहरण", nurseCard: "नर्स रेखा पहुँच गईं", nurseSub: "शाम 4:02 की विज़िट",
+    testimonials: "परिवार क्या कहते हैं", carousel: "समीक्षा",
+  },
+  trustSection: {
+    eyebrow: "भरोसा और अनुपालन", title: "क्लिनिकल और डेटा-गोपनीयता मानकों पर आधारित", lead: "आपका स्वास्थ्य डेटा निजी है, और हर डॉक्टर सत्यापित है।",
+    badges: [
+      { title: "NMC-सत्यापित डॉक्टर", text: "जुड़ने से पहले हर डॉक्टर का पंजीकरण राष्ट्रीय आयुर्विज्ञान आयोग / राज्य चिकित्सा परिषद के रजिस्टर से जाँचा जाता है।" },
+      { title: "ABDM के अनुरूप", text: "आयुष्मान भारत डिजिटल मिशन के साथ काम करने के लिए बनाया गया, जिसमें ABHA हेल्थ ID और सहमति-आधारित रिकॉर्ड साझा करना शामिल है।" },
+      { title: "DPDP अधिनियम, 2023", text: "भारत के डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम पर आधारित गोपनीयता: स्पष्ट सहमति, सीमित उपयोग और डेटा मिटाने का आपका अधिकार।" },
+    ],
+    chips: ["टेलीमेडिसिन प्रैक्टिस दिशानिर्देश, 2020", "एन्क्रिप्टेड कॉल और रिकॉर्ड", "सहमति-प्रथम डेटा साझाकरण", "शिकायत अधिकारी नियुक्त"],
+  },
+  faq: { eyebrow: "सामान्य प्रश्न", title: "आपके सवाल, हमारे जवाब", more: "जो ढूँढ रहे हैं वह नहीं मिला? {link}", moreLink: "हमारी केयर टीम से संपर्क करें" },
+  leadSection: {
+    eyebrow: "शुरू करें", title: "हमारी केयर टीम से कॉलबैक पाएँ",
+    lead: "बताइए आपको क्या चाहिए। केयर कोऑर्डिनेटर आमतौर पर सेवा समय में 15 मिनट के भीतर कॉल करते हैं।",
+    helpline: "24×7 हेल्पलाइन", languages: "12+ भारतीय भाषाओं में सहायता",
+  },
+  form: {
+    name: "पूरा नाम", namePh: "जैसे सुनीता देवी",
+    mobile: "मोबाइल नंबर", mobilePh: "98765 43210", mobileHint: "10 अंकों का भारतीय मोबाइल। हम कॉल या WhatsApp करेंगे।",
+    city: "शहर या पिन कोड", cityPh: "जैसे सीतापुर या 261001",
+    language: "पसंदीदा भाषा", languagePh: "भाषा चुनें",
+    service: "कौन-सी सेवा चाहिए", servicePh: "सेवा चुनें", waitlist: "(प्रतीक्षा सूची)",
+    consent: "मैं सहमति देता/देती हूँ कि Accufly Healthcare मेरे अनुरोध के बारे में मुझसे संपर्क करे और {privacy} के अनुसार, DPDP अधिनियम, 2023 के तहत मेरा डेटा प्रोसेस करे। मैं कभी भी सहमति वापस ले सकता/सकती हूँ।",
+    privacy: "गोपनीयता नीति", submit: "कॉलबैक का अनुरोध करें", secure: "डेटा एन्क्रिप्टेड भेजा जाता है। हम आपका डेटा कभी नहीं बेचते।",
+    errors: {
+      name: "कृपया अपना नाम लिखें।", mobile: "6–9 से शुरू होने वाला सही 10 अंकों का मोबाइल नंबर लिखें।", city: "अपना शहर या 6 अंकों का पिन लिखें।",
+      language: "कृपया भाषा चुनें।", service: "कृपया सेवा चुनें।", consent: "संपर्क करने के लिए आपकी सहमति ज़रूरी है।",
+    },
+    rate: "इस नेटवर्क से बहुत सारे अनुरोध आए हैं। कुछ मिनट बाद फिर कोशिश करें या हेल्पलाइन पर कॉल करें।",
+    server: "हमारी ओर से कुछ गड़बड़ हुई। फिर कोशिश करें या हेल्पलाइन पर कॉल करें।",
+    successTitle: "अनुरोध मिल गया", successText: "MyDR24 केयर कोऑर्डिनेटर जल्द ही आपको {mobile} पर कॉल करेंगे।", ref: "संदर्भ",
+    worse: "इंतज़ार में तबीयत बिगड़ रही है? तुरंत {112} पर कॉल करें।", again: "एक और अनुरोध भेजें", honeypot: "इस फ़ील्ड को खाली छोड़ें",
+  },
+  notice: { strong: "मेडिकल इमरजेंसी?", text: "{strong} फ़ॉर्म न भरें। अभी {112} या {108} (एम्बुलेंस) पर कॉल करें, या {sos} दबाएँ।" },
+  sos: {
+    title: "क्या यह मेडिकल इमरजेंसी है?",
+    text: "अगर कोई बेहोश है, साँस नहीं ले रहा, बहुत खून बह रहा है या सीने में दर्द है, तो पहले राष्ट्रीय आपातकालीन सेवा को कॉल करें।",
+    national: "राष्ट्रीय आपातकाल", nationalSub: "पुलिस · फ़ायर · मेडिकल", ambulance: "एम्बुलेंस", ambulanceSub: "सरकारी एम्बुलेंस सेवा",
+    callUs: "MyDR24 त्वरित चिकित्सा सेवा को कॉल करें", note: "MyDR24 देखभाल का तालमेल करता है, यह 112/108 का विकल्प नहीं है। उपलब्धता स्थान पर निर्भर है।",
+  },
+  bar: { label: "त्वरित विकल्प", call: "डॉक्टर को कॉल", book: "बुक करें" },
+  sheet: { title: "डॉक्टर बुक करें" },
+  footer: {
+    blurb: "ग्रामीण, अर्ध-शहरी और वंचित भारत के लिए AI-संचालित हाइब्रिड हेल्थकेयर: टेलीकंसल्टेशन, अपॉइंटमेंट और घर पर देखभाल।",
+    services: "सेवाएँ", company: "कंपनी", legal: "कानूनी", reach: "संपर्क करें",
+    about: "हमारे बारे में", how: "कैसे काम करता है", doctors: "डॉक्टर", faq: "सामान्य प्रश्न", contact: "संपर्क", designSystem: "डिज़ाइन सिस्टम",
+    privacy: "गोपनीयता नीति", terms: "उपयोग की शर्तें", disclaimer: "चिकित्सा अस्वीकरण", grievance: "शिकायत अधिकारी", emergency: "आपातकाल: 112",
+    disclaimerTitle: "चिकित्सा अस्वीकरण।",
+    disclaimerText: "MyDR24 पंजीकृत चिकित्सकों के माध्यम से टेलीकंसल्टेशन और देखभाल-समन्वय सेवाएँ देता है और आपातकालीन सेवाओं का विकल्प नहीं है। आपातकाल में तुरंत 112 या 108 पर कॉल करें। वेबसाइट की सामग्री सामान्य जानकारी के लिए है, चिकित्सा सलाह नहीं। इलाज के परिणाम हर व्यक्ति में अलग होते हैं और किसी विशेष परिणाम की गारंटी नहीं है। “उदाहरण” चिह्नित आँकड़े, डॉक्टर प्रोफ़ाइल और समीक्षाएँ डिज़ाइन के लिए नमूना डेटा हैं।",
+    rights: "सर्वाधिकार सुरक्षित।", madeFor: "भारत के लिए बनाया गया",
+  },
+  doctorsPage: {
+    eyebrow: "हमारे डॉक्टर", title: "सत्यापित। अनुभवी। स्थानीय।",
+    lead: "हमारे नेटवर्क में लाइव उपलब्धता। विशेषज्ञता या भाषा से फ़िल्टर करें और जो ऑनलाइन हों उनसे परामर्श लें।",
+    speciality: "विशेषज्ञता", language: "भाषा", all: "सभी", onlineOnly: "सिर्फ़ अभी ऑनलाइन", apply: "फ़िल्टर लागू करें",
+    results: "{n} डॉक्टर", none: "इन फ़िल्टर से अभी कोई डॉक्टर नहीं मिला। दूसरी विशेषज्ञता या भाषा आज़माएँ।", reset: "फ़िल्टर हटाएँ",
+    sample: "डॉक्टर प्रोफ़ाइल उदाहरण के लिए नमूना डेटा हैं; उपलब्धता सिम्युलेटेड है।", updated: "उपलब्धता अपने-आप अपडेट होती है।",
+    seeAll: "सभी डॉक्टर देखें", carousel: "डॉक्टर",
+  },
+  servicesPage: {
+    title: "भारत की ज़िंदगी के हिसाब से देखभाल",
+    lead: "आधी रात के 2 मिनट वाले परामर्श से लेकर माता-पिता के लिए साप्ताहिक नर्स विज़िट तक, MyDR24 ऑनलाइन और ऑफ़लाइन देखभाल एक जगह लाता है।",
+    compareEyebrow: "तुलना", compareTitle: "मेरे लिए कौन-सी सेवा सही है?", feature: "सुविधा",
+    headers: ["क्विक कंसल्ट", "अपॉइंटमेंट", "होम केयर"],
+    rows: [
+      ["किसके लिए", "अचानक, गैर-आपात लक्षण", "विशेषज्ञ की राय, फ़ॉलो-अप", "बुज़ुर्ग, रिकवरी, लंबी बीमारी"],
+      ["कैसे", "वीडियो / वॉइस", "ऑनलाइन या पार्टनर क्लिनिक", "आपके घर पर"],
+      ["इंतज़ार", "~2 मिनट*", "अपना समय चुनें", "उसी दिन / अगले दिन*"],
+      ["पर्चा", "ई-प्रिस्क्रिप्शन", "ई-प्रिस्क्रिप्शन", "जुड़े डॉक्टर द्वारा"],
+    ],
+    compareNote: "*उदाहरण; स्थान और उपलब्धता पर निर्भर।",
+    ctaTitle: "समझ नहीं आ रहा कहाँ से शुरू करें?", ctaText: "बताइए क्या हो रहा है, हमारी केयर टीम आपको सही सेवा तक पहुँचाएगी।",
+    features: "क्या शामिल है", related: "इस सेवा के डॉक्टर", other: "अन्य सेवाएँ",
+  },
+  contactPage: {
+    title: "हम 24×7 आपके साथ हैं", lead: "कॉल करें, मैसेज करें या कॉलबैक माँगें। हमारे केयर कोऑर्डिनेटर आपकी भाषा बोलते हैं।",
+    ways: "हम तक पहुँचने के तरीके", helplineSub: "24×7 हेल्पलाइन", whatsapp: "WhatsApp करें", whatsappSub: "कुछ ही मिनटों में जवाब",
+    emailSub: "गैर-ज़रूरी सवाल · 1 कार्यदिवस", office: "पंजीकृत कार्यालय का पता (प्लेसहोल्डर)",
+    grievanceTitle: "शिकायत अधिकारी", grievanceText: "नाम (प्लेसहोल्डर) · {email} · लागू कानून द्वारा निर्धारित समय में जवाब।",
+    formTitle: "कॉलबैक का अनुरोध करें",
+  },
+  notFound: { title: "पेज नहीं मिला", text: "आप जो पेज ढूँढ रहे हैं वह मौजूद नहीं है या हटा दिया गया है।" },
+};
+
+const dictionaries: Record<Locale, Dictionary> = { en, hi };
+
+export function getDictionary(locale: Locale): Dictionary {
+  return dictionaries[locale] ?? en;
+}

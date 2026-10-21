@@ -1,0 +1,200 @@
+/* =====================================================================
+   MyDR24 Design Tokens  —  mirrors tokens/mydr24.tokens.json
+   Naming: --{category}-{role}-{variant}. Dark is the default theme.
+   Font families come from next/font (--nf-*) set on <html> in app/layout.tsx.
+   Contrast (WCAG 2.2 AA, measured on --color-bg-elevated #111827):
+   text 16.9:1 · muted 6.9:1 · subtle 5.6:1 · primary-ink 7.8:1 · secondary-ink 7.5:1 · gold 10:1
+   On-primary text on teal 8.5:1. Urgent #FF4D4F is for glows/borders/icons (5.9:1 non-text);
+   text-bearing SOS fills use --color-urgent-fill #D92D2F (4.8:1 with white).
+   ===================================================================== */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Colour — surfaces */
+  --color-bg: #0A0F1A;
+  --color-bg-elevated: #111827;
+  --color-bg-sunken: #070B14;
+  --color-surface-glass: rgba(255, 255, 255, 0.05);
+  --color-surface-glass-strong: rgba(255, 255, 255, 0.08);
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-border-strong: rgba(255, 255, 255, 0.20);
+  --color-overlay: rgba(4, 7, 13, 0.72);
+
+  /* Colour — brand */
+  --color-primary: #00C2A8;
+  --color-primary-hover: #2AD9C1;
+  --color-primary-pressed: #00A08B;
+  --color-primary-ink: #00C2A8;          /* primary used as text */
+  --color-primary-soft: rgba(0, 194, 168, 0.12);
+  --color-on-primary: #0A0F1A;
+
+  --color-secondary: #3B82F6;
+  --color-secondary-ink: #7AA9F8;
+  --color-secondary-soft: rgba(59, 130, 246, 0.14);
+
+  --color-urgent: #FF4D4F;               /* SOS only */
+  --color-urgent-fill: #D92D2F;
+  --color-urgent-fill-hover: #C42528;
+  --color-urgent-soft: rgba(255, 77, 79, 0.14);
+  --color-on-urgent: #FFFFFF;
+
+  --color-gold: #F5B942;                 /* golden hour */
+  --color-gold-ink: #F5B942;
+  --color-gold-soft: rgba(245, 185, 66, 0.14);
+
+  /* Colour — text */
+  --color-text: #F8FAFC;
+  --color-text-muted: #94A3B8;
+  --color-text-subtle: #8391A7;          /* 5.6:1 on elevated – captions only */
+  --color-text-disabled: #64748B;
+
+  /* Colour — feedback */
+  --color-success: #34D399;
+  --color-success-soft: rgba(52, 211, 153, 0.14);
+  --color-error: #FF8A8C;
+  --color-error-soft: rgba(255, 77, 79, 0.12);
+  --color-focus: #5EEAD4;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #00C2A8 0%, #3B82F6 100%);
+  --gradient-hero: radial-gradient(60% 60% at 75% 30%, rgba(0, 194, 168, 0.18) 0%, rgba(10, 15, 26, 0) 70%),
+                   radial-gradient(50% 50% at 10% 80%, rgba(59, 130, 246, 0.14) 0%, rgba(10, 15, 26, 0) 70%);
+  --gradient-warm: linear-gradient(160deg, rgba(245, 185, 66, 0.22) 0%, rgba(255, 140, 90, 0.10) 45%, rgba(10, 15, 26, 0) 100%);
+
+  /* Shadow scale (layered) */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, 0.20);
+  --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.25), 0 8px 16px rgba(0, 0, 0, 0.25);
+  --shadow-3: 0 4px 8px rgba(0, 0, 0, 0.25), 0 16px 32px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-4: 0 8px 16px rgba(0, 0, 0, 0.30), 0 32px 64px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-glow-primary: 0 0 0 1px rgba(0, 194, 168, 0.35), 0 8px 32px rgba(0, 194, 168, 0.28);
+  --shadow-glow-urgent: 0 0 0 1px rgba(255, 77, 79, 0.45), 0 8px 28px rgba(255, 77, 79, 0.35);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg: #F8FAFC;
+  --color-bg-elevated: #FFFFFF;
+  --color-bg-sunken: #EEF2F7;
+  --color-surface-glass: rgba(10, 15, 26, 0.03);
+  --color-surface-glass-strong: rgba(10, 15, 26, 0.06);
+  --color-border: rgba(10, 15, 26, 0.10);
+  --color-border-strong: rgba(10, 15, 26, 0.22);
+  --color-overlay: rgba(10, 15, 26, 0.48);
+
+  --color-primary: #00C2A8;
+  --color-primary-hover: #00AD96;
+  --color-primary-pressed: #009482;
+  --color-primary-ink: #00776A;          /* 5.5:1 on white, 4.9:1 on sunken */
+  --color-primary-soft: rgba(0, 194, 168, 0.12);
+  --color-on-primary: #0A0F1A;
+
+  --color-secondary: #3B82F6;
+  --color-secondary-ink: #1D5FD6;
+  --color-secondary-soft: rgba(59, 130, 246, 0.10);
+
+  --color-urgent: #FF4D4F;
+  --color-urgent-fill: #D92D2F;
+  --color-urgent-fill-hover: #B9222A;
+  --color-urgent-soft: rgba(255, 77, 79, 0.10);
+  --color-on-urgent: #FFFFFF;
+
+  --color-gold: #F5B942;
+  --color-gold-ink: #8F5E00;             /* 5.6:1 on white */
+  --color-gold-soft: rgba(245, 185, 66, 0.18);
+
+  --color-text: #0A0F1A;
+  --color-text-muted: #475569;
+  --color-text-subtle: #5B677A;
+  --color-text-disabled: #94A3B8;
+
+  --color-success: #047857;
+  --color-success-soft: rgba(4, 120, 87, 0.10);
+  --color-error: #C42528;
+  --color-error-soft: rgba(217, 45, 47, 0.08);
+  --color-focus: #0F766E;
+
+  --gradient-hero: radial-gradient(60% 60% at 75% 30%, rgba(0, 194, 168, 0.16) 0%, rgba(248, 250, 252, 0) 70%),
+                   radial-gradient(50% 50% at 10% 80%, rgba(59, 130, 246, 0.10) 0%, rgba(248, 250, 252, 0) 70%);
+  --gradient-warm: linear-gradient(160deg, rgba(245, 185, 66, 0.28) 0%, rgba(255, 160, 110, 0.14) 45%, rgba(248, 250, 252, 0) 100%);
+
+  --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 1px rgba(15, 23, 42, 0.04);
+  --shadow-2: 0 2px 4px rgba(15, 23, 42, 0.05), 0 8px 16px rgba(15, 23, 42, 0.06);
+  --shadow-3: 0 4px 8px rgba(15, 23, 42, 0.05), 0 16px 32px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  --shadow-4: 0 8px 16px rgba(15, 23, 42, 0.06), 0 32px 64px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+}
+
+/* Theme-independent tokens */
+:root {
+  /* Typography */
+  --font-ui: var(--nf-inter, "Inter"), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--nf-jakarta, "Plus Jakarta Sans"), var(--nf-inter, "Inter"), system-ui, sans-serif;
+  --font-deva: var(--nf-deva, "Noto Sans Devanagari"), var(--nf-inter, "Inter"), system-ui, sans-serif;
+
+  /* Fluid type scale: min (360) → max (1440) */
+  --fs-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);   /* 40 → 72 */
+  --fs-h1: clamp(2.25rem, 1.65rem + 2.4vw, 3.5rem);      /* 36 → 56 */
+  --fs-h2: clamp(1.75rem, 1.35rem + 1.6vw, 2.75rem);     /* 28 → 44 */
+  --fs-h3: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);     /* 22 → 28 */
+  --fs-h4: 1.25rem;                                      /* 20 */
+  --fs-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);/* 17 → 20 */
+  --fs-body: 1rem;                                       /* 16 */
+  --fs-small: 0.875rem;                                  /* 14 */
+  --fs-caption: 0.8125rem;                               /* 13 */
+  --fs-overline: 0.75rem;                                /* 12 */
+
+  --lh-tight: 1.1;
+  --lh-heading: 1.2;
+  --lh-body: 1.6;
+  --tracking-tight: -0.025em;
+  --tracking-overline: 0.12em;
+
+  /* 8-pt spacing scale */
+  --space-0-5: 4px;
+  --space-1: 8px;
+  --space-1-5: 12px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-16: 128px;
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-pad: 80px;
+  --gutter: 24px;
+  --cols: 12;
+  --header-h: 72px;
+  --section-y: var(--space-16);
+  --touch-target: 48px;
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Z-index */
+  --z-header: 50;
+  --z-action-bar: 60;
+  --z-menu: 70;
+  --z-dialog: 80;
+}
+
+@media (max-width: 1439px) { :root { --container-pad: 40px; --section-y: var(--space-12); } }
+@media (max-width: 1023px) { :root { --cols: 8; --container-pad: 32px; --section-y: var(--space-10); } }
+@media (max-width: 767px)  { :root { --cols: 4; --container-pad: 20px; --gutter: 16px; --section-y: var(--space-8); --header-h: 64px; } }
+@media (max-width: 374px)  { :root { --container-pad: 16px; } }
